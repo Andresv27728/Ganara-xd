@@ -295,6 +295,7 @@ export async function vegetaJadiBot(options) {
       sock.handler = handler.handler.bind(sock)
       sock.connectionUpdate = connectionUpdate.bind(sock)
       sock.credsUpdate = saveCreds.bind(sock, true)
+      sock.subreloadHandler = creloadHandler.bind(sock)
       sock.ev.on("messages.upsert", sock.handler)
       sock.ev.on("connection.update", sock.connectionUpdate)
       sock.ev.on("creds.update", sock.credsUpdate)
