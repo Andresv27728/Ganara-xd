@@ -1,5 +1,5 @@
 // créditos y creador de código BrayanOFC Y Modificado Por xzzys26
-// 🦈 Re-decorado por ChatGPT con temática de Gawr Gura 🌊✨
+// 🦈 Re-decorado por Jules con temática de Gawr Gura 🌊✨
 import { xpRange } from '../lib/levelling.js'
 import ws from 'ws'
 import { generateWAMessageFromContent, prepareWAMessageMedia } from '@whiskeysockets/baileys'
@@ -12,38 +12,19 @@ const versionBot = '3.0' // cámbiala si quieres
 
 // Categorías decoradas con Gura
 let tags = {
-  'serbot': '🦈 𝗦𝗨𝗕-𝗚𝗨𝗥𝗔𝗕𝗢𝗧𝗦',
-  'info': '🌊 𝗜𝗡𝗙𝗢𝗦',
-  'main': '📜 𝗠𝗘𝗡𝗨 𝗢𝗖𝗘𝗔𝗡𝗢',
-  'nable': '⚡ 𝗠𝗢𝗗𝗢 𝗧𝗜𝗕𝗨𝗥𝗢𝗡',
-  'cmd': '📝 𝗖𝗢𝗠𝗔𝗡𝗗𝗢𝗦',
-  'advanced': '✨ 𝗣𝗢𝗗𝗘𝗥𝗘𝗦 𝗔𝗩𝗔𝗡𝗭𝗔𝗗𝗢𝗦',
-  'game': '🎮 𝗝𝗨𝗘𝗚𝗢𝗦 𝗚𝗨𝗥𝗔',
-  'rpg': '⚔️ 𝗥𝗣𝗚 𝗢𝗖𝗘𝗔𝗡𝗢',
-  'group': '🏝️ 𝗚𝗥𝗨𝗣𝗢𝗦',
-  'downloader': '📥 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔𝗦',
-  'sticker': '🖼️ 𝗦𝗧𝗜𝗖𝗞𝗘𝗥 𝗚𝗨𝗥𝗔',
-  'audio': '🔊 𝗔𝗨𝗗𝗜𝗢',
-  'search': '🔎 𝗕𝗨𝗦𝗤𝗨𝗘𝗗𝗔',
-  'tools': '🧰 𝗛𝗘𝗥𝗔𝗠𝗜𝗘𝗡𝗧𝗔𝗦',
-  'fun': '🎉 𝗗𝗜𝗩𝗘𝗥𝗦𝗜𝗢𝗡 𝗞𝗔𝗪𝗔𝗜',
-  'anime': '🧧 𝗔𝗡𝗜𝗠𝗘',
-  'nsfw': '🔞 𝗡𝗦𝗙𝗪',
-  'premium': '💎 𝗣𝗥𝗘𝗠𝗜𝗨𝗠 𝗦𝗛𝗔𝗥𝗞',
-  'weather': '☔ 𝗖𝗟𝗜𝗠𝗔',
-  'news': '📄 𝗡𝗢𝗧𝗜𝗖𝗜𝗔𝗦',
-  'finance': '🏛️ 𝗙𝗜𝗡𝗔𝗡𝗭𝗔',
-  'education': '📚 𝗘𝗗𝗨𝗖𝗔𝗖𝗜𝗢𝗡',
-  'health': '❤️ 𝗦𝗔𝗟𝗨𝗗',
-  'entertainment': '📲 𝗘𝗡𝗧𝗥𝗘𝗧𝗘𝗡𝗜𝗠𝗜𝗘𝗡𝗧𝗢',
-  'sports': '⚽ 𝗗𝗘𝗣𝗢𝗥𝗧𝗘𝗦',
-  'travel': '✈️ 𝗔𝗩𝗘𝗡𝗧𝗨𝗥𝗔𝗦',
-  'food': '🍣 𝗖𝗢𝗠𝗜𝗗𝗔',
-  'shopping': '🛍️ 𝗖𝗢𝗠𝗣𝗥𝗔',
-  'productivity': '🔖 𝗣𝗥𝗢𝗗𝗨𝗖𝗧𝗜𝗩𝗜𝗗𝗔𝗗',
-  'social': '📸 𝗥𝗘𝗗𝗘𝗦',
-  'security': '🔱 𝗦𝗘𝗚𝗨𝗥𝗜𝗗𝗔𝗗',
-  'custom': '⚙️ 𝗣𝗘𝗥𝗦𝗢𝗡𝗔𝗟'
+  'main': '📜 Menú Principal',
+  'info': '🌊 Información',
+  'game': '🎮 Juegos',
+  'rpg': '⚔️ RPG',
+  'downloader': '📥 Descargas',
+  'tools': '🧰 Herramientas',
+  'sticker': '🖼️ Stickers',
+  'fun': '🎉 Diversión',
+  'anime': '🧧 Anime',
+  'group': '🏝️ Grupos',
+  'nable': '⚙️ Opciones',
+  'premium': '💎 Premium',
+  'serbot': '🦈 Sub-Bots',
 }
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
@@ -73,36 +54,34 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 
     // 🌊 Bloque inicial decorado Gura
     let menuText = `
-╭━━━〔 💙 *GURA-SHARK-MENU* 💙 〕━━━⬣
-┃ 🦈 *Nombre*: *${botname}*
-┃ 🌊 *Creador*: *${creador}*
-┃ 🐟 *Estado*: *${modo}*
-┃ ☁️ *Saludo*: *${saludo}*
-┃ ⏳ *Uptime*: *${uptime}*
-┃ 💎 *Premium*: *${totalPremium}*
-┃ ⚡ *Versión*: *${versionBot}*
-╰━━━━━━━━━━━━━━━━━━━━━━⬣
-`
+╭━━〔 *${botname}* 〕━━⬣
+┃
+┃ 🦈 ¡Hola, *${m.name}*!
+┃ 🌊 *Creador:* ${creador}
+┃ 🐟 *Estado:* ${modo}
+┃ ☁️ *Saludo:* ${saludo}
+┃ ⏳ *Uptime:* ${uptime}
+┃ 💎 *Premium:* ${totalPremium}
+┃ ⚡ *Versión:* ${versionBot}
+┃
+╰━━━━━━━━━━━━━━━━━━⬣
+
+╭━━〔 *MENÚ DE COMANDOS* 〕━━⬣`
 
     for (let tag in tags) {
       let comandos = help.filter(menu => menu.tags.includes(tag))
       if (!comandos.length) continue
 
-      menuText += `
-╭━━━〔 ${tags[tag]} 〕━━━⬣
-${comandos.map(menu => menu.help.map(help =>
-  `┃ 🦈 ${_p}${help}${menu.limit ? ' 🐚' : ''}${menu.premium ? ' 🔒' : ''}`
-).join('\n')).join('\n')}
-╰━━━━━━━━━━━━━━━━━━━━━━⬣
-`
+      menuText += `\n┃\n┃ *${tags[tag]}*\n`
+      menuText += `${comandos.map(menu => menu.help.map(help =>
+        `┃ ${_p}${help}${menu.limit ? ' 🐚' : ''}${menu.premium ? ' 🔒' : ''}`
+      ).join('\n')).join('\n')}`
     }
 
-    menuText += `
-> 🌊🐚 𝙂𝙪𝙧𝙖-𝙎𝙝𝙖𝙧𝙠 𝙋𝙤𝙬𝙚𝙧 𝙊𝙣 🦈✨
-`
+    menuText += `\n╰━━━━━━━━━━━━━━━━━━⬣\n
+> 🌊🐚 *Gura-Shark Power On* 🦈✨`
 
     await m.react('🦈')
-    await m.react('🌊')
 
     let vidBuffer = await (await fetch('https://files.catbox.moe/9ifmlp.mp4')).buffer()
     let media = await prepareWAMessageMedia(
