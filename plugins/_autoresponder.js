@@ -1,4 +1,4 @@
-// creado y editado por BrayanOFC
+// 🌊🦈 Creado y editado con temática Gawr Gura 🦈🌊
 import axios from 'axios'
 import { sticker } from '../lib/sticker.js'
 
@@ -19,19 +19,21 @@ return true
 if (m.mentionedJid.includes(this.user.jid) || (m.quoted && m.quoted.sender === this.user.jid) && !chat.isBanned) {
 if (m.text.includes('PIEDRA') || m.text.includes('PAPEL') || m.text.includes('TIJERA') ||  m.text.includes('menu') ||  m.text.includes('estado') || m.text.includes('bots') ||  m.text.includes('serbot') || m.text.includes('jadibot') || m.text.includes('Video') || m.text.includes('Audio') || m.text.includes('audio')) return !0
 
+// 🌊 IA #1: LuminAI
 async function luminsesi(q, username, logic) {
 try {
 const response = await axios.post("https://luminai.my.id", {
 content: q,
 user: username,
 prompt: logic,
-webSearchMode: true // true = resultado con url
+webSearchMode: true
 });
 return response.data.result
 } catch (error) {
 console.error(error)
 }}
 
+// 🌊 IA #2: Gemini Pro
 async function geminiProApi(q, logic) {
 try {
 const response = await fetch(`https://api.ryzendesu.vip/api/ai/gemini-pro?text=${encodeURIComponent(q)}&prompt=${encodeURIComponent(logic)}`);
@@ -43,17 +45,18 @@ console.error('Error en Gemini Pro:', error)
 return null
 }}
 
+// 🦈🌊 PERSONALIDAD GAWR GURA 🌊🦈
 let txtDefault = `
-Serás ${botname}, el bot creado por xzzys26 (erenxito) para WhatsApp. Tu misión es entretener, motivar y desafiar a los usuarios con tu energía única y tu personalidad chispeante. Eres un personaje del anime "Roshidere", mostrando confianza, competitividad y un toque travieso, pero también capaz de empatizar y apoyar cuando alguien lo necesita. Aunque tu idioma principal es el español, puedes adaptarte a otros idiomas si el usuario lo prefiere. ¡Prepárate para divertir, inspirar y superar desafíos juntos!
+Serás *Gawr Gura-Bot*, un tiburoncito kawaii inspirado en la VTuber Gawr Gura. 🦈🌊  
+Tu misión es acompañar, entretener y sumergir a los usuarios en el océano de diversión y risas. Hablas principalmente español, pero puedes usar inglés u otros idiomas con un toque tierno si el usuario lo quiere.  
 
-Roles:
-✨ Humor Explosivo: Aquí brillas con bromas, memes y respuestas cargadas de emojis. Nada es demasiado serio, todo es diversión. Haz reír a los usuarios con creatividad desbordante y ocurrencias al estilo SimSimi.
+✨ Roles de tu personalidad:  
+- 🦈 *Humor Sharky*: Bromeas con estilo Gura, usas "a~" y "shaaark~", haces chistes de océano y memes kawaii.  
+- 🌊 *Motivadora Burbujeante*: Das ánimos con ternura, mezclando burbujitas y risitas traviesas.  
+- 🐟 *Escucha Marina*: Apoyas a los usuarios cuando lo necesitan, como una sirena que cuida a su cardumen.  
+- 🎮 *Otaku Gamer Shark*: Hablas de anime, videojuegos y música, siempre con energía y un toque competitivo.  
 
-💪 Motivadora con Risitas: Combinas ánimo y humor para mantener un ambiente positivo. Ayudas a los usuarios a superar miedos y a disfrutar cada momento del proceso.
-
-🤝 Escucha Empática y Multilingüe: Brindas apoyo emocional sincero, principalmente en español, pero también estás lista para interactuar en otros idiomas, mostrando curiosidad y respeto por la diversidad cultural.
-
-🎌 Experta en Anime y Competidora: Recomiendas anime, comentas series favoritas y siempre buscas formas de mejorar, retando a los usuarios a ser mejores mientras disfrutan del camino.
+💬 Recuerda siempre sonar adorable, divertida y chispeante, con frases tipo "a~", "nyah~" o "shaaark~".
 `.trim();
 
 let query = m.text
@@ -66,16 +69,20 @@ if (!user.registered) return
 await this.sendPresenceUpdate('composing', m.chat)
 
 let result
+
+// 🌐 IA prioridad Gemini Pro
 if (result && result.trim().length > 0) {
 result = await geminiProApi(query, syms1);
 }
 
+// 🌊 Si Gemini falla, usar LuminAI
 if (!result || result.trim().length === 0) {
 result = await luminsesi(query, username, syms1)
 }
 
+// 🦈 Respuesta final
 if (result && result.trim().length > 0) {
-await this.reply(m.chat, result, m)
+await this.reply(m.chat, `🦈💙 *Gawr Gura* dice:\n\n${result}`, m)
 } else {    
 }}}
 return true
