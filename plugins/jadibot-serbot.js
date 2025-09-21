@@ -212,16 +212,14 @@ export async function vegetaJadiBot(options) {
         if (reason === 428 || reason === 408) {
           console.log(chalk.bold.magentaBright(`\n╭─────────────────────────\n│ La conexión (+${path.basename(pathvegetaJadiBot)}) fue cerrada inesperadamente o expiró. Intentando reconectar...\n╰─────────────────────────`))
           await creloadHandler(true).catch(console.error)
-        }
-        if (reason === 440) {
+        } else if (reason === 440) {
           console.log(chalk.bold.magentaBright(`\n╭─────────────────────────\n│ La conexión (+${path.basename(pathvegetaJadiBot)}) fue reemplazada por otra sesión activa.\n╰─────────────────────────`))
           try {
             if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathvegetaJadiBot)}@s.whatsapp.net`, { text: 'HEMOS DETECTADO UNA NUEVA SESIÓN, BORRE LA NUEVA SESIÓN PARA CONTINUAR\n\n> SI HAY ALGÚN PROBLEMA VUELVA A CONECTARSE' }, { quoted: m || null }) : ""
           } catch (error) {
             console.error(chalk.bold.yellow(`Error 440 no se pudo enviar mensaje a: +${path.basename(pathvegetaJadiBot)}`))
           }
-        }
-        if (reason == 405 || reason == 401) {
+        } else if (reason == 405 || reason == 401) {
           console.log(chalk.bold.magentaBright(`\n╭─────────────────────────\n│ La sesión (+${path.basename(pathvegetaJadiBot)}) fue cerrada. Credenciales no válidas o dispositivo desconectado manualmente.\n╰─────────────────────────`))
           try {
             if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathvegetaJadiBot)}@s.whatsapp.net`, { text: 'SESIÓN PENDIENTE\n\n> INTENTÉ NUEVAMENTE VOLVER A SER SUB-BOT' }, { quoted: m || null }) : ""
@@ -229,19 +227,19 @@ export async function vegetaJadiBot(options) {
             console.error(chalk.bold.yellow(`Error 405 no se pudo enviar mensaje a: +${path.basename(pathvegetaJadiBot)}`))
           }
           fs.rmdirSync(pathvegetaJadiBot, { recursive: true })
-        }
-        if (reason === 500) {
+        } else if (reason === 500) {
           console.log(chalk.bold.magentaBright(`\n╭─────────────────────────\n│ Conexión perdida en la sesión (+${path.basename(pathvegetaJadiBot)}). Borrando datos...\n╰─────────────────────────`))
           if (options.fromCommand) m?.chat ? await conn.sendMessage(`${path.basename(pathvegetaJadiBot)}@s.whatsapp.net`, { text: 'CONEXIÓN PÉRDIDA\n\n> INTENTÉ MANUALMENTE VOLVER A SER SUB-BOT' }, { quoted: m || null }) : ""
           return creloadHandler(true).catch(console.error)
-        }
-        if (reason === 515) {
+        } else if (reason === 515) {
           console.log(chalk.bold.magentaBright(`\n╭─────────────────────────\n│ Reinicio automático para la sesión (+${path.basename(pathvegetaJadiBot)}).\n╰─────────────────────────`))
           await creloadHandler(true).catch(console.error)
-        }
-        if (reason === 403) {
+        } else if (reason === 403) {
           console.log(chalk.bold.magentaBright(`\n╭─────────────────────────\n│ Sesión cerrada o cuenta en soporte para la sesión (+${path.basename(pathvegetaJadiBot)}).\n╰─────────────────────────`))
           fs.rmdirSync(pathvegetaJadiBot, { recursive: true })
+        } else {
+            console.log(chalk.bold.magentaBright(`\n╭─────────────────────────\n│ Razón de desconexión desconocida: ${reason}\n╰─────────────────────────`));
+            await creloadHandler(true).catch(console.error)
         }
       }
       if (connection == 'open') {
@@ -268,11 +266,15 @@ export async function vegetaJadiBot(options) {
       }
     }, 60000)
 
+    console.log('Cargando handler.js...');
     let handler = await import('../handler.js')
+    console.log('handler.js cargado exitosamente.');
     let creloadHandler = async function (restatConn) {
       try {
+        console.log('Recargando handler.js...');
         const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error)
         if (Object.keys(Handler || {}).length) handler = Handler
+        console.log('handler.js recargado exitosamente.');
 
       } catch (e) {
         console.error('⚠️ Nuevo error: ', e)
