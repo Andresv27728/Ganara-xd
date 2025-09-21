@@ -4,17 +4,19 @@ let handler = async function (m, { conn, groupMetadata }) {
   const participantes = groupMetadata?.participants || [];
   const mencionados = participantes.map(p => p.id).filter(Boolean);
 
-  let listaUsuarios = mencionados.map(jid => `┃ ⚡ @${jid.split('@')[0]}`).join('\n');
+  let listaUsuarios = mencionados.map(jid => `┃ 🦈 @${jid.split('@')[0]}`).join('\n');
 
   const mensaje = [
-    '╭━━━〔 𝙂𝘼𝘼𝙍𝘼-𝙐𝙇𝙏𝙍𝘼 𝙄𝙉𝙑𝙊𝘾𝘼𝘾𝙄𝙊𝙉 〕━━━⬣',
-    '┃ *🔥 ¡Invocación completada! 🔥*',
-    '┃ 📌 Todos los usuarios del chat han sido invocados:',
+    '╭━━━〔 🌊 𝙂𝙐𝙍𝘼-𝙎𝙃𝘼𝙍𝙆 𝙄𝙉𝙑𝙊𝘾𝘼𝙏𝙄𝙊𝙉 🌊 〕━━━⬣',
+    '┃ ✨ *¡Invocación marina completada!* ✨',
+    '┃ 📢 Todos los habitantes del arrecife han sido llamados:',
     listaUsuarios,
-    '╰━━━━━━━━━━━━━━━━━━━━⬣'
+    '╰━━━━━━━━━━━━━━━━━━━━⬣',
+    '',
+    '💙 *Powered by Gawr Gura* 🦈'
   ].join('\n');
 
-  const imagenURL = 'https://files.catbox.moe/cnl455.jpg';
+  const imagenURL = 'https://files.catbox.moe/f6vksl.jpg'; // Imagen temática de Gura
 
   await conn.sendMessage(
     m.chat,
@@ -26,11 +28,11 @@ let handler = async function (m, { conn, groupMetadata }) {
     { quoted: m }
   );
 
-  await conn.sendMessage(m.chat, { react: { text: '📢', key: m.key } });
+  await conn.sendMessage(m.chat, { react: { text: '🌊', key: m.key } });
 };
 
 handler.command = ['invocar', 'hidetag', 'tag'];
 handler.help = ['invocar'];
 handler.tags = ['grupos'];
 
-export default handler;
+export
