@@ -19,7 +19,7 @@ const ddownr = {
       const downloadUrl = await ddownr.cekProgress(id);
       return downloadUrl;
     }
-    throw new Error("Fallo al obtener los detalles del video.");
+    throw new Error("🌊 Gura-Error: No pude obtener los detalles del video...");
   },
   cekProgress: async (id) => {
     const config = {
@@ -41,7 +41,7 @@ const ddownr = {
 
 const apisExtra = [
   {
-    name: "BrayanOFC",
+    name: "ZenOcean",
     fetchUrl: async (url) => {
       const res = await fetch(`https://api.vreden.my.id/api/ytmp3?url=${encodeURIComponent(url)}`);
       const data = await res.json();
@@ -49,7 +49,7 @@ const apisExtra = [
     }
   },
   {
-    name: "BrayanOFC",
+    name: "ZenOcean",
     fetchUrl: async (url) => {
       const res = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${encodeURIComponent(url)}`);
       const data = await res.json();
@@ -57,7 +57,7 @@ const apisExtra = [
     }
   },
   {
-    name: "BrayanOFC",
+    name: "ZenOcean",
     fetchUrl: async (url) => {
       const res = await fetch(`https://axeel.my.id/api/download/audio?url=${encodeURIComponent(url)}`);
       const data = await res.json();
@@ -69,14 +69,14 @@ const apisExtra = [
 const handler = async (m, { conn, text, command }) => {
   try {
     if (!text.trim()) {
-      return conn.reply(m.chat, `Ingresa el nombre del video a descargar.`, m);
+      return conn.reply(m.chat, `🦈✨ 𝙂𝙪𝙧𝙖-𝙎𝙝𝙖𝙖~ 🌊\n\n⚡️ Debes ingresar el nombre del video o un enlace válido.\n\n📌 Ejemplo: *.ytmp3 Shakira - Monotonía*`, m);
     }
 
-    await conn.sendMessage(m.chat, { react: { text: "🕑", key: m.key } });
+    await conn.sendMessage(m.chat, { react: { text: "🌀", key: m.key } });
 
     const search = await yts(text);
     if (!search.all || search.all.length === 0) {
-      return m.reply("No se encontraron resultados para tu búsqueda.");
+      return m.reply("❌🌊 No encontré nada... Gura se confundió 🐟💔");
     }
 
     const videoInfo = search.all[0];
@@ -99,26 +99,34 @@ const handler = async (m, { conn, text, command }) => {
 
     if (downloadUrl) {
       const fileName = `${title.replace(/[^a-zA-Z0-9 ]/g, "").trim().replace(/ +/g, "_")}.${format}`;
+
+      let caption = `
+┏━━━━『 🦈💙 𝙂𝙐𝙍𝘼 𝙔𝙏-𝙈𝙋𝟛 🌊 』━━━━┓
+┃ 🎶 *Título:* ${title}
+┃ 📀 *Formato:* ${format.toUpperCase()}
+┃ 🌐 *Url:* ${url}
+╰━━━━━━━━━⊰ 💙 𝙂𝙪𝙧𝙖 𝙎𝙝𝙖𝙖~ ⊱━━━━━━━━━╯
+`.trim();
+
       await conn.sendMessage(
         m.chat,
         {
           audio: { url: downloadUrl },
           mimetype: "audio/mpeg",
           fileName: fileName,
-          ptt: false
+          caption
         },
         { quoted: m }
       );
 
       await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
-
     } else {
       await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
-      return m.reply(`No se pudo descargar el audio.`);
+      return m.reply(`🐟💔 No se pudo descargar el audio... inténtalo otra vez.`);
     }
   } catch (error) {
     await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } });
-    return m.reply(`Ocurrió un error: ${error.message}`);
+    return m.reply(`❌🌊 Error inesperado: ${error.message}`);
   }
 };
 
