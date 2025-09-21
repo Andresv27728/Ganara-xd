@@ -37,7 +37,7 @@ let handler = async (m, { conn, args, isOwner }) => {
 };
 
 handler.help = ['robawaifu <id>'];
-handler.tags = ['gacha'];
+handler.tags = ['anime'];
 handler.command = ['robawaifu'];
 handler.group = true;
 

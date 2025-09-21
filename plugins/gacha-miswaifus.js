@@ -34,7 +34,7 @@ let handler = async (m, { conn }) => {
 };
 
 handler.help = ['miswaifus'];
-handler.tags = ['gacha'];
+handler.tags = ['anime'];
 handler.command = ['miswaifus', 'mywaifus'];
 handler.group = true;
 

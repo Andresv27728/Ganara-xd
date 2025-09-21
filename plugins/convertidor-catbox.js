@@ -39,7 +39,7 @@ let handler = async (m, { conn, text }) => {
 };
 
 handler.help = ["tourl <url>"];
-handler.tags = ["descargas"];
+handler.tags = ["downloader"];
 handler.command = ['tourl']; // comando cambiado a TOURl
 handler.group = true;
 handler.register = true;

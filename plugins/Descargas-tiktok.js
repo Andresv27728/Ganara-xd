@@ -42,7 +42,7 @@ const handler = async (m, { conn, text, args, usedPrefix, command }) => {
 };
 
 handler.help = ["tiktok"];
-handler.tags = ["descargas"];
+handler.tags = ["downloader"];
 handler.command = ["tt", "tiktok", "ttdl"];
 
 export default handler;

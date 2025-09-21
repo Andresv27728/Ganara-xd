@@ -98,7 +98,7 @@ Espera a que termine tu descarga ⌛`, m);
 
 // 📜 Comandos y configuración del handler
 handler.help = ['spotify'];
-handler.tags = ['descargas'];
+handler.tags = ['downloader'];
 handler.command = /^(spotify|music)$/i;
 handler.register = true;
 handler.limit = 1;

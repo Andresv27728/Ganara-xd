@@ -13,7 +13,7 @@ let handler = async (m, { conn }) => {
 }
 
 handler.help = ['wallet']
-handler.tags = ['economy']
+handler.tags = ['rpg']
 handler.command = ['wallet', 'cartera']
 handler.group = true
 
