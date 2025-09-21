@@ -1,12 +1,14 @@
-//código creado x The Carlos 👑 
+// 🌊 Código redecorado por Gawr Gura 🦈💙 
 global.math = global.math || {};
 
 const handler = async (m, { conn, args, usedPrefix, command }) => {
   const textoAyuda = `
-🌵 Ingrese la dificultad con la que deseas jugar
+🌊✨ *ACERTI-GURA MATH* 🦈💙
 
-🚩 Dificultades disponibles: *${Object.keys(modes).join(' | ')}*
-• Ejemplo: *${usedPrefix + command} noob*
+Elige tu nivel de dificultad, shaa~  
+Disponibles: *${Object.keys(modes).join(' | ')}*
+
+📌 Ejemplo: *${usedPrefix + command} noob*
 `.trim();
 
   if (args.length < 1) return await conn.reply(m.chat, textoAyuda, m, rcanal);
@@ -16,66 +18,73 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
 
   const id = m.chat;
   if (id in global.math) 
-    return conn.reply(m.chat, '🌵 Todavía hay una pregunta activa en este chat.', global.math[id][0]);
+    return conn.reply(m.chat, '⚠️ UwU~ Ya hay un desafío matemático activo en este chat, shaaa~ 🦈', global.math[id][0]);
 
   const math = genMath(mode);
-  
-  // Inicializar usuario si no existe
+
+  // Inicializar usuario
   if (!global.db.data.users[m.sender]) global.db.data.users[m.sender] = { monedas: 0 };
   const user = global.db.data.users[m.sender];
-
   if (!isNumber(user.monedas)) user.monedas = 0;
 
-  // Guardar la pregunta en el objeto global
+  // Guardar el reto activo
   global.math[id] = [
     await conn.reply(
       m.chat,
-      `🧮 ¿Cuánto es el resultado de: *${math.str}*?\n\n🕝 Tiempo: *${(math.time / 1000).toFixed(2)} segundos*\n💰 Premio: *${math.bonus.toLocaleString()} Monedas*`,
+      `
+🧮💫 *DESAFÍO GURA-MATH* 🐬
+────────────────────────────
+❓ Resuelve: *${math.str}*
+
+⏱️ Tiempo: ${(math.time / 1000).toFixed(2)} segundos  
+💰 Recompensa: +${math.bonus.toLocaleString()} monedas 🪙  
+────────────────────────────
+> ¡Piensa rápido o Gura te muerde, shaaa~ 🦈
+`.trim(),
       m,
       rcanal
     ),
     math,
-    4, // Intentos
+    4,
     setTimeout(() => {
       if (global.math[id]) {
-        conn.reply(m.chat, `⏳ Se ha acabado el tiempo.\n\n✔️ La respuesta era: *${math.result}*`, m, rcanal);
+        conn.reply(m.chat, `⏳ Waa~ se acabó el tiempo, onii-chan 💦\n✔️ La respuesta correcta era: *${math.result}* 🐬`, m, rcanal);
         delete global.math[id];
       }
     }, math.time)
   ];
 };
 
+// 🎮 Control de respuestas
 handler.before = async function (m, { conn }) {
   const id = m.chat;
   if (!(id in global.math)) return;
 
   const [msg, math, tries] = global.math[id];
 
-  // Inicializar usuario si no existe
+  // Usuario
   if (!global.db.data.users[m.sender]) global.db.data.users[m.sender] = { monedas: 0 };
   const user = global.db.data.users[m.sender];
-
   if (!isNumber(user.monedas)) user.monedas = 0;
 
   if (m.text && (parseInt(m.text) === math.result || parseFloat(m.text) === math.result)) {
     user.monedas = (user.monedas || 0) + math.bonus;
 
-    conn.reply(m.chat, `🎉 ¡Correcto! Has ganado *${math.bonus.toLocaleString()}* monedas. 💰`, m, rcanal);
+    conn.reply(m.chat, `🎉✨ ¡Correcto, shaaa~! Ganaste *${math.bonus.toLocaleString()}* monedas 🪙🐬`, m, rcanal);
 
     clearTimeout(global.math[id][3]);
     delete global.math[id];
   } else if (tries > 1) {
-    // Resta intentos si la respuesta es incorrecta
     global.math[id][2]--;
-    conn.reply(m.chat, `❌ Respuesta incorrecta.\n🔁 Intentos restantes: *${global.math[id][2]}*`, m, rcanal);
+    conn.reply(m.chat, `❌ Nya~ incorrecto.\n🔁 Intentos restantes: *${global.math[id][2]}*`, m, rcanal);
   } else {
-    // Se acabaron los intentos
-    conn.reply(m.chat, `⏳ Se acabaron tus intentos.\n✔️ La respuesta correcta era: *${math.result}*`, m, rcanal);
+    conn.reply(m.chat, `⏳ Waa~ se acabaron tus intentos 💦\n✔️ Respuesta correcta: *${math.result}* 🦈`, m, rcanal);
     clearTimeout(global.math[id][3]);
     delete global.math[id];
   }
 };
 
+// 📚 Configuración
 handler.help = ['math'];
 handler.tags = ['game'];
 handler.command = ['math', 'mates', 'matemáticas'];
@@ -92,8 +101,8 @@ const modes = {
   ultra: [-50000, 50000, -50000, 50000, '*/+-^%√∛log!^^', 150000, 250000],
   impossible: [-999999, 999999, -999999, 999999, '*/+-^%√∛log!^^', 180000, 270000],
   god: [-9999999, 9999999, -9999999, 9999999, '*/+-^%√∛log!^^', 240000, 280000],
-  omega: [-99999999, 99999999, -99999999, 99999999, '*/+-^%√∛log!^^C', 300000, 100000], // ajustado
-  infinity: [-999999999, 999999999, -999999999, 999999999, '*/+-^%√∛log!^^C', 400000, 300000], // ajustado
+  omega: [-99999999, 99999999, -99999999, 99999999, '*/+-^%√∛log!^^C', 300000, 100000],
+  infinity: [-999999999, 999999999, -999999999, 999999999, '*/+-^%√∛log!^^C', 400000, 300000],
 };
 
 const operators = {
