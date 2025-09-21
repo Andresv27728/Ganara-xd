@@ -269,39 +269,11 @@ export async function vegetaJadiBot(options) {
     console.log('Cargando handler.js...');
     let handler = await import('../handler.js')
     console.log('handler.js cargado exitosamente.');
-    let creloadHandler = async function (restatConn) {
-      try {
-        console.log('Recargando handler.js...');
-        const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error)
-        if (Object.keys(Handler || {}).length) handler = Handler
-        console.log('handler.js recargado exitosamente.');
-
-      } catch (e) {
-        console.error('⚠️ Nuevo error: ', e)
-      }
-      if (restatConn) {
-        const oldChats = sock.chats
-        try { sock.ws.close() } catch { }
-        sock.ev.removeAllListeners()
-        sock = makeWASocket(connectionOptions, { chats: oldChats })
-        isInit = true
-      }
-      if (!isInit) {
-        sock.ev.off("messages.upsert", sock.handler)
-        sock.ev.off("connection.update", sock.connectionUpdate)
-        sock.ev.off('creds.update', sock.credsUpdate)
-      }
-
-      sock.handler = handler.handler.bind(sock)
-      sock.connectionUpdate = connectionUpdate.bind(sock)
-      sock.credsUpdate = saveCreds.bind(sock, true)
-      sock.subreloadHandler = creloadHandler.bind(sock)
-      sock.ev.on("messages.upsert", sock.handler)
-      sock.ev.on("connection.update", sock.connectionUpdate)
-      sock.ev.on("creds.update", sock.credsUpdate)
-      isInit = false
-      return true
-    }
-    creloadHandler(false)
+    sock.handler = handler.handler.bind(sock)
+    sock.connectionUpdate = connectionUpdate.bind(sock)
+    sock.credsUpdate = saveCreds.bind(sock, true)
+    sock.ev.on("messages.upsert", sock.handler)
+    sock.ev.on("connection.update", sock.connectionUpdate)
+    sock.ev.on("creds.update", sock.credsUpdate)
   })
 }
