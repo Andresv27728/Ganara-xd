@@ -32,12 +32,16 @@ let handler = async (m, { conn, __dirname }) => {
 
     await conn.reply(
       m.chat,
-      `🚩 Limpieza completada.\nArchivos eliminados: ${deletedFiles.length}`,
+      `🌊🦈 *Gura-chan ha hecho limpieza!* ✨\n\n🧹 Archivos eliminados: *${deletedFiles.length}*\n\n💙 Todo limpito como el océano después de la marea~`, 
       m
     )
   } catch (err) {
     console.error(err)
-    await conn.reply(m.chat, '❌ Ocurrió un error al limpiar la carpeta tmp.', m)
+    await conn.reply(
+      m.chat, 
+      '❌💦 *Gura se enredó en las algas... ocurrió un error limpiando la carpeta tmp.*', 
+      m
+    )
   }
 }
 
