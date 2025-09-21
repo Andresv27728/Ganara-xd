@@ -83,14 +83,14 @@ let handler = async (m, { conn, text }) => {
   if (!text) return conn.sendMessage(m.chat, { text: `Ingresa un texto. Ejemplo: .pin Gaara` }, { 
     quoted: m,
     forwardedNewsletterMessageInfo: {
-      newsletterJid: '120363422694102494@newsletter',
+      newsletterJid: '120363399729727124@newsletter',
       newsletterName: 'Gaara-Ultra-MD⚡️',
       serverMessageId: 100
     }
   });
 
   try {
-    const res2 = await fetch('https://files.catbox.moe/dloo3r.jpg');
+    const res2 = await fetch('https://files.catbox.moe/8sl0sc.jpg');
     const thumb2 = Buffer.from(await res2.arrayBuffer());
 
     // Mensaje que simula el canal arriba
@@ -115,7 +115,7 @@ let handler = async (m, { conn, text }) => {
     if (!results || results.length === 0) return conn.sendMessage(m.chat, { text: `No se encontraron resultados para "${text}".` }, { 
       quoted: m,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: '120363422694102494@newsletter',
+        newsletterJid: '120363399729727124@newsletter',
         newsletterName: 'Gaara-Ultra-MD⚡️',
         serverMessageId: 100
       }
@@ -136,7 +136,7 @@ let handler = async (m, { conn, text }) => {
       caption: `Resultados de: ${text}\nCantidad de resultados: ${maxImages}`,
       quoted: fkontak,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: '120363422694102494@newsletter',
+        newsletterJid: '120363399729727124@newsletter',
         newsletterName: 'Gaara-Ultra-MD⚡️',
         serverMessageId: 100
       }
@@ -149,7 +149,7 @@ let handler = async (m, { conn, text }) => {
     conn.sendMessage(m.chat, { text: 'Error al obtener imágenes de Pinterest.' }, { 
       quoted: m,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: '120363422694102494@newsletter',
+        newsletterJid: '120363399729727124@newsletter',
         newsletterName: 'Gaara-Ultra-MD⚡️',
         serverMessageId: 100
       }
