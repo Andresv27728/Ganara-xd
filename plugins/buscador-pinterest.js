@@ -11,7 +11,7 @@ async function sendAlbumMessage(jid, medias, options = {}) {
       throw new TypeError(`media.data must be object with url or buffer, received: ${media.data}`);
   }
 
-  if (medias.length < 2) throw new RangeError("Minimum 2 media");
+  if (medias.length < 2) throw new RangeError("🐟 Debes darme al menos 2 imágenes para hacer un álbum marino~ 💙🦈");
 
   const caption = options.text || options.caption || "";
   const delay = !isNaN(options.delay) ? options.delay : 500;
@@ -19,7 +19,6 @@ async function sendAlbumMessage(jid, medias, options = {}) {
   delete options.caption;
   delete options.delay;
 
-  // Crear el álbum
   const album = baileys.generateWAMessageFromContent(
     jid,
     {
@@ -80,11 +79,13 @@ const pins = async (judul) => {
 };
 
 let handler = async (m, { conn, text }) => {
-  if (!text) return conn.sendMessage(m.chat, { text: `Ingresa un texto. Ejemplo: .pin Gaara` }, { 
+  if (!text) return conn.sendMessage(m.chat, { 
+    text: `⚠️🌊 Ingresa un texto para que Gura busque en Pinterest~ 🦈✨\n\nEjemplo: *.pin Gawr Gura kawaii* 💙`, 
+  }, { 
     quoted: m,
     forwardedNewsletterMessageInfo: {
       newsletterJid: '120363399729727124@newsletter',
-      newsletterName: 'Gaara-Ultra-MD⚡️',
+      newsletterName: '🌊 Gura-Ocean-MD 🦈✨',
       serverMessageId: 100
     }
   });
@@ -93,7 +94,6 @@ let handler = async (m, { conn, text }) => {
     const res2 = await fetch('https://files.catbox.moe/8sl0sc.jpg');
     const thumb2 = Buffer.from(await res2.arrayBuffer());
 
-    // Mensaje que simula el canal arriba
     const fkontak = {
       key: { 
         participants: "0@s.whatsapp.net", 
@@ -103,20 +103,22 @@ let handler = async (m, { conn, text }) => {
       },
       message: {
         locationMessage: {
-          name: '𝗕𝗨𝗦𝗤𝗨𝗘𝗗𝗔 𝗗𝗘 ✦ 𝗣𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁',
+          name: '🔎🐟 𝗕𝘂𝘀𝗾𝘂𝗲𝗱𝗮 𝗢𝗰𝗲á𝗻𝗶𝗰𝗮 ✦ 𝗣𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁',
           jpegThumbnail: thumb2
         }
       },
       participant: "0@s.whatsapp.net"
     };
 
-    m.react('🕒');
+    m.react('🌊');
     const results = await pins(text);
-    if (!results || results.length === 0) return conn.sendMessage(m.chat, { text: `No se encontraron resultados para "${text}".` }, { 
+    if (!results || results.length === 0) return conn.sendMessage(m.chat, { 
+      text: `❌🦈 No encontré olas con resultados para "${text}"... intenta con otra palabra, nya~ 💫` 
+    }, { 
       quoted: m,
       forwardedNewsletterMessageInfo: {
         newsletterJid: '120363399729727124@newsletter',
-        newsletterName: 'Gaara-Ultra-MD⚡️',
+        newsletterName: '🌊 Gura-Ocean-MD 🦈✨',
         serverMessageId: 100
       }
     });
@@ -131,13 +133,12 @@ let handler = async (m, { conn, text }) => {
       });
     }
 
-    // Enviar álbum con el canal simulado arriba
     await sendAlbumMessage(m.chat, medias, {
-      caption: `Resultados de: ${text}\nCantidad de resultados: ${maxImages}`,
+      caption: `💙✨ Resultados oceánicos de: *${text}* 🐟\n🌊 Cantidad de imágenes encontradas: *${maxImages}* 🦈`,
       quoted: fkontak,
       forwardedNewsletterMessageInfo: {
         newsletterJid: '120363399729727124@newsletter',
-        newsletterName: 'Gaara-Ultra-MD⚡️',
+        newsletterName: '🌊 Gura-Ocean-MD 🦈✨',
         serverMessageId: 100
       }
     });
@@ -146,11 +147,13 @@ let handler = async (m, { conn, text }) => {
 
   } catch (error) {
     console.error(error);
-    conn.sendMessage(m.chat, { text: 'Error al obtener imágenes de Pinterest.' }, { 
+    conn.sendMessage(m.chat, { 
+      text: '❌🐠 Error submarino: No pude atrapar imágenes en Pinterest. Intenta otra vez~ 🦈💦' 
+    }, { 
       quoted: m,
       forwardedNewsletterMessageInfo: {
         newsletterJid: '120363399729727124@newsletter',
-        newsletterName: 'Gaara-Ultra-MD⚡️',
+        newsletterName: '🌊 Gura-Ocean-MD 🦈✨',
         serverMessageId: 100
       }
     });
@@ -159,6 +162,6 @@ let handler = async (m, { conn, text }) => {
 
 handler.help = ['pinterest'];
 handler.command = ['pinterest', 'pin'];
-handler.tags = ['buscador'];
+handler.tags = ['gawr-gura', 'buscador'];
 
 export default handler;
