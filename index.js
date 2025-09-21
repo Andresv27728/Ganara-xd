@@ -1,5 +1,5 @@
 //adaptado para VEGETA-BOT-MB por BrayanOFC 
-console.log('Iniciando index.js...');
+console.log('Probando la modificación de index.js');
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '1'
 import './config.js'
 import { setupMaster, fork } from 'cluster'
@@ -374,9 +374,8 @@ mkdirSync(rtU, { recursive: true })
 }
 
 global.rutaJadiBot = join(__dirname, `./${jadi}`)
-console.log('Cargando sub-bots...');
-if (global.vegetaJadibts) {
-console.log('La carga de sub-bots está habilitada.');
+/*
+if (global.Jadibts) {
 if (!existsSync(global.rutaJadiBot)) {
 mkdirSync(global.rutaJadiBot, { recursive: true }) 
 console.log(chalk.bold.cyan(`🔎 La carpeta: ${jadi} se creó correctamente SAIYAJIN.`))
@@ -392,6 +391,7 @@ const readBotPath = readdirSync(botPath)
 if (readBotPath.includes(creds)) {
 JadiBot({JadiBot: botPath, m: null, conn, args: '', usedPrefix: '/', command: 'serbot'})
 }}}}
+*/
 
 const pluginFolder = global.__dirname(join(__dirname, './plugins/index'))
 const pluginFilter = (filename) => /\.js$/.test(filename)
