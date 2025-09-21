@@ -3,8 +3,8 @@ import { sticker } from '../lib/sticker.js';
 //import uploadImage from '../lib/uploadImage.js';
 //import { webp2png } from '../lib/webp2mp4.js';
 
-const redes = 'https://chat.whatsapp.com/KkAYjIFHOGXKNjUN6IkUqf'; // Define la URL aquí
-const icons = null; // Si "icons" es necesario, define su valor o cámbialo según corresponda
+const redes = 'https://chat.whatsapp.com/KkAYjIFHOGXKNjUN6IkUqf'; // Link de la comunidad 🌊🦈
+const icons = null; // Aquí puedes poner un ícono de Gura si lo deseas 🐟
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   let stiker = false;
@@ -14,11 +14,11 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (/webp|image|video/g.test(mime)) {
       if (/video/g.test(mime)) 
         if ((q.msg || q).seconds > 8) 
-          return m.reply(`☁️ *¡El video no puede durar más de 8 segundos!*`);
+          return m.reply(`🦈💦 *Gura dice:* El video no puede durar más de *8 segunditos* 🌊✨`);
 
       let img = await q.download?.();
       if (!img) 
-        return conn.reply(m.chat, `🐉 *_¿Y el video? Intenta enviar primero imagen/video/gif y luego responde con el comando._*`, m);
+        return conn.reply(m.chat, `🌊🐟 *Gura-chan:* ¿Y el archivo? Mándame primero imagen/video/gif y después usa el comando 💙`, m);
 
       let out;
       try {
@@ -38,7 +38,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       if (isUrl(args[0])) 
         stiker = await sticker(false, args[0], global.packname, global.author);
       else 
-        return m.reply(`💫 El URL es incorrecto`);
+        return m.reply(`⚡ *Gura dice:* Esa URL no es válida nyah~ 🐬`);
     }
   } catch (e) {
     console.error(e);
@@ -58,23 +58,23 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
             'isForwarded': false, 
             externalAdReply: { 
               showAdAttribution: false, 
-              title: global.packname, 
-              body: `𝚅𝙴𝙶𝙴𝚃𝙰 𝙱𝙾𝚃- 𝙼𝙱 `, 
+              title: `💙🦈 ${global.packname} - GuraBot 🌊✨`, 
+              body: `✨ Sticker mágico de Gura-chan 💦`, 
               mediaType: 2, 
-              sourceUrl: redes, // Usamos la variable definida
-              thumbnail: icons // Asegúrate de que "icons" tenga un valor definido
+              sourceUrl: redes, // Enlace de comunidad
+              thumbnail: icons // Aquí puedes poner una imagen de Gura
             }
           }
         }, 
         { quoted: m }
       );
     } else {
-      return conn.reply(m.chat, '⚡ *_¿Y el video? Intenta enviar primero imagen/video/gif y luego responde con el comando._*', m);
+      return conn.reply(m.chat, '🌊🦈 *Gura está confundida:* ¿y el archivo? Mándame imagen/video/gif y luego responde con el comando 💙', m);
     }
   }
 };
 
-handler.help = ['stiker <img>', 'sticker <url>'];
+handler.help = ['sticker <img>', 'sticker <url>'];
 handler.tags = ['sticker'];
 handler.command = ['s', 'sticker', 'stiker'];
 
