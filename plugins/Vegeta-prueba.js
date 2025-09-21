@@ -458,7 +458,7 @@ conn.reply(m.chat, `❮🔮❯ Se agotaron tus ${monedas}`, m)
 continue
 }
 if (plugin.level > _user.level) {
-conn.reply(m.chat, `❮🐉❯ Se requiere el nivel: *${plugin.level}*\n\n• Tu nivel actual es: *${_user.level}*\n\n• Usa este comando para subir de nivel:\n*${usedPrefix}levelup*`, m)
+conn.reply(m.chat, `Se requiere el nivel: *${plugin.level}*\n\n• Tu nivel actual es: *${_user.level}*\n\n• Usa este comando para subir de nivel:\n*${usedPrefix}levelup*`, m)
 continue
 }
 let extra = {
@@ -505,7 +505,7 @@ await plugin.after.call(this, m, extra)
 console.error(e)
 }}
 if (m.monedas)
-conn.reply(m.chat, `❮🐉❯ Utilizaste ${+m.monedas} ${monedas}`, m)
+conn.reply(m.chat, `Utilizaste ${+m.monedas} ${monedas}`, m)
 }
 break
 }}
@@ -568,16 +568,16 @@ global.dfail = (type, m, usedPrefix, command, conn) => {
 
 
 const msg = {
-rowner: '🐉El comando *${comando}* solo puede ser usado por los creadores del bot SAIYAJIN☁️.',
-owner: '🐉El comando *${comando}* solo puede ser usado por los desarrolladores del bot SAIYAJIN☁️.',
-mods: '🐉El comando *${comando}* solo puede ser usado por los moderadores del bot SAIYAJIN☁️.',
-premium: '🐉El comando *${comando}* solo puede ser usado por los usuarios premium SAIYAJIN☁️.',
-group: '🐉El comando *${comando}* solo puede ser usado en grupos SAIYAJIN☁️.',
-private: '🐉El comando *${comando}* solo puede ser usado al chat privado del bot SAIYAJIN☁️.',
-admin: '🐉El comando *${comando}* solo puede ser usado por los administradores del grupo SAIYAJIN☁️.',
-botAdmin: '🐉Para ejecutar el comando *${comando}* debo ser administrador del grupo SAIYAJIN☁️.',
-//unreg: '🐉pene de BrayanOFC☁️',
-restrict: '🐉Esta caracteristica está desactivada SAIYAJIN☁️.'
+rowner: 'El comando *${comando}* solo puede ser usado por El creador del bot.',
+owner: 'El comando *${comando}* solo puede ser usado por los desarrolladores del bot.',
+mods: 'El comando *${comando}* solo puede ser usado por los moderadores del bot .',
+premium: 'El comando *${comando}* solo puede ser usado por los usuarios premium.',
+group: 'El comando *${comando}* solo puede ser usado en grupos.',
+private: 'El comando *${comando}* solo puede ser usado al chat privado del bot.',
+admin: 'El comando *${comando}* solo puede ser usado por los administradores del grupo.',
+botAdmin: 'Para ejecutar el comando *${comando}* debo ser administrador del grupo.',
+//unreg: 'ELIMINAR REGISTRO',
+restrict: 'Esta caracteristica está desactivada.'
 }[type];
 if (msg) return m.reply(msg).then(_ => m.react('✖️'))}
 
