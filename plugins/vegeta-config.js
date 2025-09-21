@@ -18,7 +18,6 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
 ┃ ${usedPrefix + command} antidelete
 ┃ ${usedPrefix + command} antilink
 ┃ ${usedPrefix + command} antilink2
-┃ ${usedPrefix + command} nsfw
 ┃ ${usedPrefix + command} autolevelup
 ┃ ${usedPrefix + command} autosticker
 ┃ ${usedPrefix + command} reaction
@@ -141,11 +140,6 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
     case 'autoresponder': case 'autorespond':
       validateGroupAdmin();
       chat.autoresponder = isEnable;
-      break;
-
-    case 'nsfw': case 'nsfwhot': case 'nsfwhorny':
-      validateGroupAdmin();
-      chat.nsfw = isEnable;
       break;
 
     case 'autolevelup': case 'autonivel': case 'nivelautomatico':
