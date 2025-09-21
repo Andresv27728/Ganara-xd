@@ -27,7 +27,7 @@ handler.all = async function (m, { conn }) {
     }
   }
 
-  global.creador = 'wa.me/5216641784469'
+  global.creador = 'wa.me/573133374132'
   global.ofcbot = `${conn.user.id.split('@')[0]}`
   global.nombreBot = 'VEGETA-BOT-MB'
   global.correo = 'brayanofc70@gmail.com'
@@ -35,7 +35,7 @@ handler.all = async function (m, { conn }) {
   global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 
     'https://raw.githubusercontent.com/BrayanOFC-Media/Assets/main/logo.png')
 
-  global.canalIdM = ["120363394965381607@newsletter"]
+  global.canalIdM = ["120363399729727124@newsletter"]
   global.canalNombreM = ["𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 • Update"]
   global.channelRD = await getRandomChannel()
 
@@ -59,11 +59,11 @@ handler.all = async function (m, { conn }) {
   global.emoji5 = '🪄'
   global.emojis = pickRandom([emoji, emoji2, emoji3, emoji4])
 
-  global.wait = '🐉 Espera un momento...'
+  global.wait = 'Espera un momento...'
 
   var canal = 'https://whatsapp.com/channel/0029Vb9P9ZU0gcfNusD1jG3d'
-  var comunidad = 'https://whatsapp.com/channel/0029Vb9P9ZU0gcfNusD1jG3d'
-  var github = 'https://github.com/BrayanOFC'
+  var comunidad = 'https://chat.whatsapp.com/CMj2uXEY78pAHtCAby2gQh?mode=ems_copy_t'
+  var github = ''
   global.redes = pickRandom([canal, comunidad, github, global.correo])
 
   let category = "imagen"
@@ -122,7 +122,7 @@ handler.all = async function (m, { conn }) {
     quoted: m
   }
 
-  global.icono = 'https://raw.githubusercontent.com/BrayanOFC-Media/Assets/main/logo.png'
+  global.icono = 'https://files.catbox.moe/ove7tq.jpg'
 
   global.rcanal = {
     contextInfo: {
