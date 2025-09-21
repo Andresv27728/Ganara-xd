@@ -1,4 +1,4 @@
-// Código creado x The Carlos 👑
+// 🌊🦈 Código sharky creado por The Carlos 👑 con temática Gawr Gura ✨💙
 import axios from 'axios'
 import FormData from 'form-data'
 import fs from 'fs'
@@ -92,18 +92,18 @@ const colorifyai = {
 
   async create(imagePath, prompt = "(masterpiece), best quality", useGhibliStyle = true, maxAttempts = 30) {
     const uploadResult = await this.uploadImage(imagePath)
-    if (uploadResult.code !== 200) throw new Error('Upload failed: ' + uploadResult.message)
-    
+    if (uploadResult.code !== 200) throw new Error('🦈❌ *Error al subir la imagen, nya~*')
+
     const uploadedImagePath = uploadResult.data.path
     const taskResult = await this.createTask(uploadedImagePath, prompt, useGhibliStyle)
-    if (taskResult.code !== 200) throw new Error('Task creation failed: ' + taskResult.message)
-    
+    if (taskResult.code !== 200) throw new Error('🌊❌ *Error creando la tarea, desu!*')
+
     const taskId = taskResult.data.task_id
     let attempts = 0
     
     while (attempts < maxAttempts) {
       const statusResult = await this.checkStatus(taskId)
-      if (statusResult.code !== 200) throw new Error('Status check failed: ' + statusResult.message)
+      if (statusResult.code !== 200) throw new Error('⚡❌ *Error al comprobar el estado, sharky falló~*')
 
       if (statusResult.data.status === 2) {
         const resultImagePath = statusResult.data.result_image
@@ -120,7 +120,7 @@ const colorifyai = {
       await new Promise(resolve => setTimeout(resolve, 3000))
     }
     
-    throw new Error('\`ᴛɪᴇᴍᴘᴏ ᴅᴇ ᴇsᴘᴇʀᴀ ᴀɢᴏᴛᴀᴅᴏ\`')
+    throw new Error('⏳🌊 *Tiempo de espera agotado, nya~*')
   }
 }
 
@@ -129,9 +129,10 @@ let handler = async (m, { conn, command }) => {
     const q = m.quoted ? m.quoted : m
     const mime = (q.msg || q).mimetype || ''
 
-    if (!mime.startsWith('image/')) return m.reply('*\`ʏ ʟᴀ ɪᴍᴀɢᴇɴ, ᴘᴀʀᴀ ᴄᴏɴᴠᴇʀᴛɪʀ ᴇɴ ᴀɴɪᴍᴇ\`*')
+    if (!mime.startsWith('image/')) 
+      return m.reply('🦈✨ *Necesito una imagen para convertirla en estilo anime, nya~*')
 
-    m.reply('Wait...')
+    m.reply('🌊⌛ *Espera un momentito... Gura está trabajando en tu imagen kawaii~* 🦈💙')
 
     const media = await q.download()
     const tempPath = `./tmp/${Date.now()}.jpg`
@@ -144,10 +145,12 @@ let handler = async (m, { conn, command }) => {
 
     await conn.sendMessage(m.chat, {
       image: { url: result.imageUrl },
+      caption: `✨🦈 Aquí tienes tu creación sharky~  
+🌊 Convertida con amor por *Gawr Gura bot* 💙`
     }, { quoted: m })
 
   } catch (e) {
-    m.reply(e.message)
+    m.reply(`❌🦈 Error: ${e.message}`)
   }
 }
 
