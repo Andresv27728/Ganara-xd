@@ -6,8 +6,11 @@ import { makeWASocket } from './lib/simple.js'
 import { Low, JSONFile } from 'lowdb'
 import { DisconnectReason, useMultiFileAuthState } from '@whiskeysockets/baileys'
 import P from 'pino'
+import yargs from 'yargs'
 
 console.log('Iniciando index.js mínimo...');
+
+global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 
 async function start() {
   const { state, saveCreds } = await useMultiFileAuthState(global.vegetasessions)
