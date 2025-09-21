@@ -2,29 +2,30 @@ import yts from 'yt-search';
 import fetch from 'node-fetch';
 import { prepareWAMessageMedia, generateWAMessageFromContent } from '@whiskeysockets/baileys';
 
-const handler = async (m, { conn, args, usedPrefix }) => {
-    if (!args[0]) return conn.reply(m.chat, `⚡️ Ingresa un texto para buscar en YouTube.\n> *Ejemplo:* ${usedPrefix + command} Shakira`, m);
+const handler = async (m, { conn, args, usedPrefix, command }) => {
+    if (!args[0]) return conn.reply(m.chat, `🦈✨ 𝙂𝙪𝙧𝙖-𝙎𝙝𝙖𝙖𝙖~ 🌊💙\n\n⚡️ 𝙄𝙣𝙜𝙧𝙚𝙨𝙖 𝙪𝙣 𝙩𝙚𝙭𝙩𝙤 𝙥𝙖𝙧𝙖 𝙗𝙪𝙨𝙘𝙖𝙧 𝙚𝙣 𝙔𝙤𝙪𝙏𝙪𝙗𝙚.\n> *Ejemplo:* ${usedPrefix + command} Shakira`, m);
 
-    await m.react('🕓');
+    await m.react('🌀');
     try {
         let searchResults = await searchVideos(args.join(" "));
 
-        if (!searchResults.length) throw new Error('No se encontraron resultados.');
+        if (!searchResults.length) throw new Error('🌊 Ningún resultado encontrado, Gura triste... 💔🦈');
 
         let video = searchResults[0];
         let thumbnail = await (await fetch(video.miniatura)).buffer();
 
-        let messageText = `*Youtube - Download*\n\n`;
-        messageText += `${video.titulo}\n\n`;
-        messageText += `> ❍ Duración: ${video.duracion || 'No disponible'}\n`;
-messageText += `> ❍ Autor: ${video.canal || 'Desconocido'}\n`;
-messageText += `> ❍ Publicado: ${convertTimeToSpanish(video.publicado)}\n`;
-messageText += `> ❍ Url: ${video.url}\n`;
+        let messageText = `┏━━━━『 🦈💙 𝙂𝙐𝙍𝘼 𝙔𝙊𝙐𝙏𝙐𝘽𝙀 🌊 』━━━━┓\n\n`;
+        messageText += `🎶 *Título:* ${video.titulo}\n\n`;
+        messageText += `> 🕒 𝘿𝙪𝙧𝙖𝙘𝙞ó𝙣: ${video.duracion || 'No disponible'}\n`;
+        messageText += `> 👤 𝘼𝙪𝙩𝙤𝙧: ${video.canal || 'Desconocido'}\n`;
+        messageText += `> 📅 𝙋𝙪𝙗𝙡𝙞𝙘𝙖𝙙𝙤: ${convertTimeToSpanish(video.publicado)}\n`;
+        messageText += `> 🔗 𝙐𝙧𝙡: ${video.url}\n\n`;
+        messageText += `╰━━━━━━⊰ 💙 𝙂𝙪𝙧𝙖 𝙎𝙝𝙖𝙖~ ⊱━━━━━━╯`;
 
         await conn.sendMessage(m.chat, {
             image: thumbnail,
             caption: messageText,
-            footer: `𝙋𝙇𝘼𝙔 𝙂𝘼𝘼𝙍𝘼-𝙐𝙇𝙏𝙍𝘼-𝙈𝘿⚡️`,
+            footer: `🌊💙 𝙂𝙐𝙍𝘼-𝙐𝙇𝙏𝙍𝘼-𝙈𝘿 🦈✨`,
             contextInfo: {
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
@@ -33,12 +34,12 @@ messageText += `> ❍ Url: ${video.url}\n`;
             buttons: [
                 {
                     buttonId: `${usedPrefix}ytmp3 ${video.url}`,
-                    buttonText: { displayText: '𝗮𝘂𝗱𝗶𝗼 🎶' },
+                    buttonText: { displayText: '💙 𝗔𝘂𝗱𝗶𝗼 🎶' },
                     type: 1,
                 },
                 {
                     buttonId: `${usedPrefix}ytmp4 ${video.url}`,
-                    buttonText: { displayText: '𝗩𝗶𝗱𝗲𝗼 🎬' },
+                    buttonText: { displayText: '🌊 𝗩𝗶𝗱𝗲𝗼 🎬' },
                     type: 1,
                 }
             ],
@@ -49,8 +50,8 @@ messageText += `> ❍ Url: ${video.url}\n`;
         await m.react('✅');
     } catch (e) {
         console.error(e);
-        await m.react('✖️');
-        conn.reply(m.chat, '*`Error al buscar el video.`*', m);
+        await m.react('❌');
+        conn.reply(m.chat, '💔🐟 *Error al buscar el video, Gura se confundió...*', m);
     }
 };
 
@@ -72,7 +73,7 @@ async function searchVideos(query) {
             duracion: video.duration.timestamp || 'No disponible'
         }));
     } catch (error) {
-        console.error('Error en yt-search:', error.message);
+        console.error('🐟 Error en yt-search:', error.message);
         return [];
     }
 }
