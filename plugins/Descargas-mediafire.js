@@ -127,7 +127,7 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
 
 // ░▒▓█  METADATA DEL PLUGIN  █▓▒░
 handler.help = ['mediafire', 'mediafiredl']
-handler.tags = ['descargas']
+handler.tags = ['downloader']
 handler.command = /^(mediafire|mediafiredl|dlmediafire)$/i
 handler.register = true
 handler.limit = 3

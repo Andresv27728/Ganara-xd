@@ -15,16 +15,15 @@ let tags = {
   'main': '📜 Menú Principal',
   'info': '🌊 Información',
   'game': '🎮 Juegos',
-  'rpg': '⚔️ RPG',
+  'rpg': '⚔️ RPG & Economía',
+  'anime': '🧧 Anime & Gacha',
   'downloader': '📥 Descargas',
   'tools': '🧰 Herramientas',
   'sticker': '🖼️ Stickers',
-  'fun': '🎉 Diversión',
-  'anime': '🧧 Anime',
   'group': '🏝️ Grupos',
-  'nable': '⚙️ Opciones',
-  'premium': '💎 Premium',
+  'owner': '👑 Owner',
   'serbot': '🦈 Sub-Bots',
+  'nable': '⚙️ Opciones',
 }
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
@@ -73,9 +72,10 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       if (!comandos.length) continue
 
       menuText += `\n┃\n┃ *${tags[tag]}*\n`
-      menuText += `${comandos.map(menu => menu.help.map(help =>
-        `┃ ${_p}${help}${menu.limit ? ' 🐚' : ''}${menu.premium ? ' 🔒' : ''}`
-      ).join('\n')).join('\n')}`
+      menuText += `${comandos.map(menu => {
+        const firstCommand = menu.help[0];
+        return `┃ ${_p}${firstCommand}${menu.limit ? ' 🐚' : ''}${menu.premium ? ' 🔒' : ''}`;
+      }).join('\n')}`
     }
 
     menuText += `\n╰━━━━━━━━━━━━━━━━━━⬣\n

@@ -251,7 +251,7 @@ continue
 
 const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
 //  LÓGICA DE PREFIJOS PERSONALIZADOS AÑADIDA NO TOCAR PORFA SOLO BRAYANOFC.
-let _prefix = (plugin.customPrefix ? [plugin.customPrefix] : []).concat(global.db.data.settings[this.user.jid]?.prefix || global.prefix);
+let _prefix = (plugin.customPrefix ? [plugin.customPrefix] : []).concat(global.db.data.chats[m.chat]?.prefix || global.db.data.settings[this.user.jid]?.prefix || global.prefix);
 let match = (_prefix instanceof RegExp ? 
 [[_prefix.exec(m.text), _prefix]] :
 Array.isArray(_prefix) ?

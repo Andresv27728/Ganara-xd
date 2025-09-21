@@ -51,7 +51,7 @@ let handler = async (m, { conn, args }) => {
 };
 
 handler.help = ['desbloquear @usuario'];
-handler.tags = ['gacha'];
+handler.tags = ['anime'];
 handler.command = ['desbloquear'];
 
 export default handler;

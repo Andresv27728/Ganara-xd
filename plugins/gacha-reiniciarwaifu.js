@@ -34,7 +34,7 @@ let handler = async (m, { conn, isOwner }) => {
 };
 
 handler.help = ['resetwaifus'];
-handler.tags = ['gacha'];
+handler.tags = ['anime'];
 handler.command = ['resetwaifus'];
 handler.group = true;
 handler.owner = true;

@@ -150,7 +150,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
 // 🦈 Comandos kawaii~
 handler.help = ['ytmp4 <url>', 'ytaudio <url>'];
-handler.tags = ['descargas'];
+handler.tags = ['downloader'];
 handler.command = ['ytmp4', 'ytaudio'];
 
 export default handler;
