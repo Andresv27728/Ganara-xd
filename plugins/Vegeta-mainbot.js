@@ -3,7 +3,7 @@
 
 let handler = async (m, { conn, command }) => {
     // 📜 Lista de owners autorizados
-    const OWNERS = ['18493907272', '5216631288816'];
+    const OWNERS = ['573133374132', '176742836768966'];
 
     // Extraer número limpio
     const senderNumber = m.sender.replace(/[^0-9]/g, '');
